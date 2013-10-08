@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>FitText</title>
+
+	<style type="text/css">
+		  body { 
+        	background: #f4f4f4;
+        	font: 14px/18px "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        	color: #666; 
+        	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+        	-webkit-text-size-adjust: none;
+        }
+
+		.container {
+			width: 84%;
+			margin:0 auto;
+			max-width:1140px;
+		}
+		.box {
+			width: 400px;
+			height: 400px;
+			background: #ff0066;
+		}
+		.box2 {
+			width: 300px;
+			height: 50px;
+			background: #acacac;
+			border-radius: 16px;
+		}
+		header {
+			width: 100%;
+			margin:0px auto;
+		}
+		h1 {
+			background: rgba(0,0,0,0.2);
+			text-align: center;
+			color:#fff;
+			font: 95px/1 "Impact";
+			text-transform: uppercase;
+			display: block;
+			text-shadow:#253e45 -1px 1px 0,
+			#253e45 -2px 2px 0,
+			#d45848 -3px 3px 0,
+			#d45848 -4px 4px 0;
+			margin: 5% auto 5%;
+		}
+
+
+
+        a, a:visited { color: #C30; text-decoration: none; border-bottom: 1px dotted #C30; }
+        a:hover { color: #900; border-bottom-style: solid; }
+
+        p { margin-bottom: 20px; }
+
+        #content {
+            width: 940px;
+            padding: 10px;
+            margin: 0 auto;
+        }
+            #content h1 { color: #333; line-height: 1em; }
+            #content ul { padding-left: 0; list-style: none; }
+                #content ul li { margin-bottom: 20px; }
+
+        #modal { display: none; }
+            #modal a { background: #CCC; color: #333; font-weight: bold; padding: 5px 10px; border: none; }
+            #modal a:hover { background: #aaa; } 
+
+        pre { border: 1px solid #CCC; background-color: #EEE; color: #333; padding: 10px 20px; }
+        
+
+	</style>
+
+	<!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="box"></div>
+		<div class="box2"></div>
+		<header>
+		<h1 id="fittext1">Squeeze with FitText</h1>
+		<h1 id="fittext2">Squeeze with FitText</h1>
+		<h1 id="fittext3">Squeeze with FitText</h1>
+		</header>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+      <div id="content">
+        <ul>
+            <li>
+                <a href="#modal" class="second">Slide to the left, and display hidden content from this page in a modal pane.</a>
+                <pre>
+&lt;a href=&quot;#modal&quot; class=&quot;second&quot;&gt;Link text&lt;/a&gt;
+&lt;div id=&quot;modal&quot; style=&quot;display:none&quot;&gt;
+    &lt;h2&gt;Modal&lt;/h2&gt;
+    &lt;a href=&quot;javascript:$.pageslide.close()&quot;&gt;Close&lt;/a&gt;
+&lt;/div&gt;
+&lt;script&gt;
+    $(&quot;.second&quot;).pageslide({ direction: &quot;left&quot;, modal: true });
+&lt;/script&gt;
+                </pre>
+            </li>
+           
+        </ul>
+        <div id="modal">
+            <h2>Modal</h2>
+            <p>This slide uses "modal" option set to "true". When using a modal pageslide, clicking on the main window will not close the window. You must explicitly call <code>$.pageslide.close()</code>.</p>
+            <p><a href="javascript:$.pageslide.close()">Close</a></p>
+        </div>
+    </div>
+
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="jquery-1.7.min.js"></script>
+	<script src="jquery.transit.js"></script>
+ 	<script src="jquery.fittext.js"></script>
+ 	<script src="jquery.pageslide.css"></script>
+ 	<script src="jquery.pageslide.js"></script>
+ 	<script src="jquery.pageslide.min.js"></script>
+	<script type="text/javascript">
+		$("#fittext1").fitText();
+		$("#fittext2").fitText(1.2);
+		$("#fittext3").fitText(1.1, { minFontSize: '50px', maxFontSize: '75px' });
+		$( ".box" ).click(function() {
+  			$(this).transition({y: '40px'});
+
+		});
+
+		$( ".box2" ).click(function() {
+  			$(this).transition({x: '210'}, 500, 'cubic-bezier(0,0.9,0.3,1)');
+
+		});	 
+        /* Default pageslide, moves to the right */
+        $(".first").pageslide();
+        
+        /* Slide to the left, and make it model (you'll have to call $.pageslide.close() to close) */
+        $(".second").pageslide({ direction: "left", modal: true });
+    </script>
+
+</body>
+</html>
